@@ -1,1 +1,31 @@
-<p>game works!</p>
+<div class="player-container">
+  @for (player of game.players; track player; let index = $index) {
+  <app-player [name]="player.name" [avatar]="player.avatar"> </app-player>
+  }
+</div>
+
+<section class="game-table">
+  <img class="pint" src="/assets/img/beer.png" alt="" />
+  <div class="card-deck">
+    @for (singleCard of cards; track singleCard.id) {
+    <img
+      [src]="
+        singleCard.revealed
+          ? singleCard.imgSrc
+          : '/assets/img/special-cards/back.png'
+      "
+      alt=""
+      [ngStyle]="
+        singleCard.revealed
+          ? setRevealedCardStyles()
+          : isNext(singleCard)
+          ? setFirstCardStyles(singleCard)
+          : game.setCardStyles(singleCard)
+      "
+      (click)="isNext(singleCard) ? revealCard(singleCard) : null"
+      (mouseover)="isNext(singleCard) ? setHoverState() : null"
+      (mouseout)="isNext(singleCard) ? unsetHoverState() : null"
+    />
+    }
+  </div>
+</section>
