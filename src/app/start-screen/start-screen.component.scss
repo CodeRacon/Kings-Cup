@@ -1,0 +1,44 @@
+.start-screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1280px;
+  height: 100%;
+  padding: 4rem 1rem 2rem 1rem;
+  margin: 0 auto;
+
+  .title--img {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    width: 32rem;
+  }
+
+  .main--img {
+    position: absolute;
+    z-index: 0;
+    top: 53%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 75vh;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 0.5rem;
+  }
+
+  .start--img {
+    position: absolute;
+    z-index: 1;
+    bottom: 3%;
+    transform-origin: center;
+    width: 16rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.05);
+      filter: brightness(1.125);
+    }
+  }
+}
