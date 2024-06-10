@@ -1,16 +1,34 @@
+// App Imports
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../models/gameData';
 import { PlayerComponent } from '../player/player.component';
+import { AddPlayerModalComponent } from '../dialogs/add-player-modal/add-player-modal.component';
+
+// MaterialDesign Imports
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [CommonModule, PlayerComponent],
+  imports: [
+    CommonModule,
+    PlayerComponent,
+    AddPlayerModalComponent,
+    //
+    MatIconModule,
+    MatButtonModule,
+    MatDialogModule,
+  ],
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
+  constructor(public dialog: MatDialog) {}
+
   game: Game = new Game();
 
   /**
@@ -144,5 +162,15 @@ export class GameComponent implements OnInit {
       filter: 'brightness(1.175) saturate(1.125)',
       boxShadow: this.boxShadow,
     };
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddPlayerModalComponent, {});
+
+    dialogRef.afterClosed().subscribe((newPlayer) => {
+      if (newPlayer) {
+        this.game.players.push(newPlayer);
+      }
+    });
   }
 }

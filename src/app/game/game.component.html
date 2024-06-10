@@ -1,6 +1,11 @@
 <div class="player-container">
   @for (player of game.players; track player; let index = $index) {
-  <app-player [name]="player.name" [avatar]="player.avatar"> </app-player>
+  <app-player
+    [name]="player.name"
+    [avatar]="player.avatar"
+    [playerActive]="index == game.currentPlayer"
+  >
+  </app-player>
   }
 </div>
 
@@ -28,4 +33,13 @@
     />
     }
   </div>
+  <button
+    mat-fab
+    color="primary"
+    aria-label="Example icon button with a delete icon"
+    class="btm-right"
+    (click)="openDialog()"
+  >
+    <mat-icon>person_add</mat-icon>
+  </button>
 </section>
