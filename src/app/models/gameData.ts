@@ -1,11 +1,18 @@
 export class Game {
-  public players: { name: string; avatar: string }[] = [
-    { name: 'Holger', avatar: '/assets/img/players/player1.png' },
-    { name: 'Berthold', avatar: '/assets/img/players/player2.png' },
-    { name: 'Gerhardt', avatar: '/assets/img/players/player3.png' },
-    { name: 'Klaus', avatar: '/assets/img/players/player2.png' },
-    { name: 'Birgit', avatar: '/assets/img/players/player1.png' },
+  public players: { name: string; avatar: string }[] = [];
+
+  public avatars: string[] = [
+    '/assets/img/players/player1.png',
+    '/assets/img/players/player2.png',
+    '/assets/img/players/player3.png',
+    '/assets/img/players/player1.png',
+    '/assets/img/players/player2.png',
+    '/assets/img/players/player3.png',
+    '/assets/img/players/player1.png',
+    '/assets/img/players/player2.png',
+    '/assets/img/players/player3.png',
   ];
+
   public currentPlayer: number = 0;
   public playedCards: string[] = [];
   public cardDeck: string[] = [];

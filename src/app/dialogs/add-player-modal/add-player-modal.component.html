@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Add new Player</h2>
+
+<mat-dialog-content class="add-player-dialog">
+  <p>Type in the new Players name</p>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="newPlayerData.name" />
+  </mat-form-field>
+  <p>Choose Avatar</p>
+
+  <div class="avatar-container">
+    <div class="avatars">
+      @for (avatar of game.avatars; track avatar) {
+      <img src="{{ avatar }}" alt="" (click)="selectAvatar(avatar)" />
+      }
+    </div>
+    <div class="avatar-preview">
+      <img [src]="newPlayerData.avatar" alt="" />
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button
+    mat-button
+    [mat-dialog-close]="newPlayerData"
+    [disabled]="!newPlayerData.name || !newPlayerData.avatar"
+    cdkFocusInitial
+  >
+    Add
+  </button>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+</mat-dialog-actions>
